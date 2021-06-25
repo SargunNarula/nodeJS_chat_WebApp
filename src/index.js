@@ -25,7 +25,8 @@ server.listen(port, (error) => {
 })
 
 console.log(__dirname)
-app.use(express.static('public_html/'))
+const publicDirectoryPath = path.join(__dirname, '/public_html')
+app.use(express.static(publicDirectoryPath))
 
 
 
