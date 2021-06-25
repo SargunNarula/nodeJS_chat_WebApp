@@ -12,7 +12,7 @@ const { callbackify } = require('util')
 const app       = express()
 
 
-const port      = process.env.PORT | 3000
+const port      = process.env.PORT || 3000
 const server    = http.createServer(app)   // Need to create server manually for socketio
 
 const io        = socketio(server)
