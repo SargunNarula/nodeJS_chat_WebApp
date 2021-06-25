@@ -93,8 +93,8 @@ io.on('connection', (socket) => {       // Connection established
         */
 
 
-       socket.emit('message', generated_msg(current_user.username,"Welcome!")) 
-       socket.broadcast.to(current_user.room).emit('message', generated_msg(`${current_user.username} has joined!`))
+       socket.emit('message', generated_msg(`Welcome  ${current_user.username}`)) 
+       socket.broadcast.to(current_user.room).emit('connected_notification', generated_msg(`${current_user.username} is connected!`))
         io.to(current_user.room).emit('roomData', {
             room: current_user.room,
             users: getUsersInRoom(current_user.room)
@@ -123,7 +123,7 @@ io.on('connection', (socket) => {       // Connection established
         console.log( 'User Disconnected')
         const current_user = removeUser(socket.id)
         if(current_user){
-            io.to(current_user.room).emit('message', generated_msg(`${current_user.username} has disconnected`))
+            io.to(current_user.room).emit('disconnect_notification', generated_msg(`${current_user.username} is disconnected`))
             io.to(current_user.room).emit('roomData', {
                 room: current_user.room,
                 users: getUsersInRoom(current_user.room)

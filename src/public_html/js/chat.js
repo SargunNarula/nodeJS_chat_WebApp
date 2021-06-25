@@ -106,7 +106,8 @@ const autoscroll = () => {
 const msg_template      = document.querySelector("#message-template").innerHTML 
 const location_template = document.querySelector("#location-message-template").innerHTML
 const sidebar_template  = document.querySelector("#sidebar-template").innerHTML 
-
+const c_notf_template     = document.querySelector("#c-notification-template").innerHTML
+const d_notf_template     = document.querySelector("#d-notification-template").innerHTML
 
 
 
@@ -144,15 +145,36 @@ socket.on('message', (message) => {
 
 })
 
-
 // Listener 2
+socket.on('connected_notification', (message) => {
+    console.log(message)
+
+    const html = Mustache.render(c_notf_template,{
+        username: message.username,
+    })
+    document.querySelector('#messages').insertAdjacentHTML('beforeend',html)
+    autoscroll()
+})
+
+// Listener 3
+socket.on('disconnect_notification', (message) => {
+    console.log(message)
+
+    const html = Mustache.render(d_notf_template,{
+        username: message.username,
+    })
+    document.querySelector('#messages').insertAdjacentHTML('beforeend',html)
+    autoscroll()
+})
+
+// Listener 4
 socket.on('recieve',(message) => {
     console.log('recieved message: ' + message)
     document.getElementById('recieve').textContent = message
 })
 
 
-// Listener 3
+// Listener 5
 socket.on('recieve_Location',(message) => {
     
 /*
@@ -186,7 +208,7 @@ socket.on('recieve_Location',(message) => {
 })
 
 
-// Listener 4
+// Listener 6
 socket.on('roomData', ( {room,users} ) => {
     const html = Mustache.render(sidebar_template,{
         room: room,
