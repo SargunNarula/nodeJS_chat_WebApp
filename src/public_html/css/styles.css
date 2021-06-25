@@ -164,6 +164,10 @@ button:disabled {
     font-size: 14px;
 }
 
+.compose a {
+    margin-left: 14px;
+}
+
 /* Chat Sidebar Styles */
 
 .room-title {
