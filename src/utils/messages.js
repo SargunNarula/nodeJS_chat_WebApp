@@ -21,7 +21,7 @@ const generateMessage = (username,text) => {
 const generateLocation = (username,message) => {
 
     message = 'https://google.com/maps?q='+message.lat+','+message.lon
-    console.log(message)
+    //console.log(message)
 
 
     // Returning a JS object to the client listeners

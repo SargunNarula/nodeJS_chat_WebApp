@@ -21,12 +21,12 @@ const io        = socketio(server)
 
 server.listen(port, (error) => {
     if(error){
-        console.log("Server Not Starting")
+        //console.log("Server Not Starting")
     }
-    console.log("Express Server Started")
+    //console.log("Express Server Started")
 })
 
-console.log(__dirname)
+//console.log(__dirname)
 const publicDirectoryPath = path.join(__dirname, '/public_html')
 app.use(express.static(publicDirectoryPath))
 
@@ -45,7 +45,7 @@ app.use(express.static(publicDirectoryPath))
 
 io.on('connection', (socket) => {       // Connection established
 
-    console.log('New WebSocket Created')
+    //console.log('New WebSocket Created')
 
 
 
@@ -81,7 +81,7 @@ io.on('connection', (socket) => {       // Connection established
         // and server
         
         socket.join(current_user.room)
-        console.log(current_user.room)
+        //console.log(current_user.room)
         /*
             socket.emit             - send msg to attached clien
             socket.broadcast.emit   - send msg to everyone except this socket client
@@ -107,7 +107,7 @@ io.on('connection', (socket) => {       // Connection established
     
     // Listener 2
     socket.on('send', (message) => {
-        console.log('sending message: '+ message)
+        //console.log('sending message: '+ message)
         //io.emit('recieve',message)
         const current_user = getUser(socket.id)
         if(current_user){
@@ -120,7 +120,7 @@ io.on('connection', (socket) => {       // Connection established
     
     // Listener 3
     socket.on('disconnect', () => {
-        console.log( 'User Disconnected')
+        //console.log( 'User Disconnected')
         const current_user = removeUser(socket.id)
         if(current_user){
             io.to(current_user.room).emit('disconnect_notification', generated_msg(`${current_user.username} is disconnected`))
@@ -137,7 +137,7 @@ io.on('connection', (socket) => {       // Connection established
     
     // Listener 4
     socket.on('send_Location',(message) => {
-        console.log("server --",message)
+        //console.log("server --",message)
         const current_user = getUser(socket.id)
         io.to(current_user.room).emit('recieve_Location',generated_location(current_user.username,message))
     })

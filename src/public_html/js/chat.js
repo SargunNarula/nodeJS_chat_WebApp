@@ -23,11 +23,11 @@ const socket = io() // To initiate a socket
 document.querySelector('#message-form').addEventListener('submit', (e) => {
     e.preventDefault()
 
-    console.log('Clicked')
+    //console.log('Clicked')
     
     let value = document.querySelector('input').value
     document.getElementById('myInput').value = ''
-    console.log("sending message: "+value)
+    //console.log("sending message: "+value)
     socket.emit('send',value)
 })
 
@@ -39,13 +39,13 @@ document.querySelector('#message-form').addEventListener('submit', (e) => {
 
 document.querySelector('#send-location').addEventListener('click', () => {
 
-    console.log('Clicked')
+    //console.log('Clicked')
     if(!navigator.geolocation){
         return alert('Not available')
     }
     navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position.coords.latitude)
-        console.log(position.coords.longitude)
+        //console.log(position.coords.latitude)
+        //console.log(position.coords.longitude)
 
         const data = {
             lat: position.coords.latitude,
@@ -134,7 +134,7 @@ socket.emit('join', {username,room}, (error)     => {
 
 // Listener 1
 socket.on('message', (message) => {
-    console.log(message)
+    //console.log(message)
 
     const html = Mustache.render(msg_template,{
         username: message.username,
@@ -148,7 +148,7 @@ socket.on('message', (message) => {
 
 // Listener 2
 socket.on('connected_notification', (message) => {
-    console.log(message)
+    //console.log(message)
 
     const html = Mustache.render(c_notf_template,{
         username: message.username,
@@ -159,7 +159,7 @@ socket.on('connected_notification', (message) => {
 
 // Listener 3
 socket.on('disconnect_notification', (message) => {
-    console.log(message)
+    //console.log(message)
 
     const html = Mustache.render(d_notf_template,{
         username: message.username,
@@ -170,7 +170,7 @@ socket.on('disconnect_notification', (message) => {
 
 // Listener 4
 socket.on('recieve',(message) => {
-    console.log('recieved message: ' + message)
+    //console.log('recieved message: ' + message)
     document.getElementById('recieve').textContent = message
 })
 
@@ -194,7 +194,7 @@ socket.on('recieve_Location',(message) => {
     document.getElementById("location_list").appendChild(node)
     document.getElementById("location_list").appendChild(node_2) 
 */
-    console.log(message)
+    //console.log(message)
 
     const html = Mustache.render(location_template,{
         username: message.username,
