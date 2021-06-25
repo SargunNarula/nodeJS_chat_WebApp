@@ -81,13 +81,13 @@ const autoscroll = () => {
     // How far have I scrolled?
     const scrollOffset      = document.querySelector('#messages').scrollTop + visibleHeight
 
-    console.log(newMessage)
+ /*    console.log(newMessage)
     console.log(newMessageStyles)
     console.log(newMessageMargin)
     console.log(newMessageHeight)
     console.log(visibleHeight)
     console.log(containerHeight)
-    console.log(scrollOffset)
+    console.log(scrollOffset) */
 
     if (containerHeight - newMessageHeight <= scrollOffset) {
         document.querySelector('#messages').scrollTop = document.querySelector('#messages').scrollHeight
